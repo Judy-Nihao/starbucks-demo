@@ -10,15 +10,74 @@
 </head>
 
 <body>
-  <header class="header">
-    這是 header
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo"><img src="assets/images/starbucks-logo.png" alt=""></a>
+        <ul class="nav__list">
+          <li class="nav__list__item"><a href="index.html">首頁</a></li>
+          <li class="nav__list__item"><a href="shop.html">新品菜單</a></li>
+          <li class="nav__list__item"><a href="index.html">聯絡我們</a></li>
+          <li class="nav__list__item cart"><a href="#"></a><div class="number">1</div></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <%- contents %>
 
-  <footer class="footer">
-    footer
+  <footer id="footer">
+    <div class="footer__top">
+      <div class="container">
+        <ul class="footer__social">
+          <li class="footer__social__icon__fb"><a href="#footer"></a></li>
+          <li class="footer__social__icon__ig"><a href="#footer"></a></li>
+          <li class="footer__social__icon__yt"><a href="#footer"></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+          <ul class="footer__info">
+            <li class="footer__info__col">
+              <h3>認識我們</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">關於星巴克</a></li>
+                <li><a href="#footer">企業責任</a></li>
+                <li><a href="#footer">企業公告</a></li>
+                <li><a href="#footer">星聞室</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>夥伴招募</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">夥伴招募</a></li>
+                <li><a href="#footer">成為我們的夥伴</a></li>
+                <li><a href="#footer">我們的福利</a></li>
+                <li><a href="#footer">發展晉升與專業學習</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>社群平台</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">Facebook</a></li>
+                <li><a href="#footer">Instagram</a></li>
+                <li><a href="#footer">YouTube</a></li>
+                <li><a href="#footer">LINE</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>顧客關懷</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">常見問題</a></li>
+                <li><a href="#footer">我在星巴克的小故事</a></li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+    </div>
   </footer>
+ 
   <script src="./assets/js/vendors.js"></script>
   <script src="./assets/js/all.js"></script>
 </body>
