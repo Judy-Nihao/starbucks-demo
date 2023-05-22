@@ -1,0 +1,40 @@
+// =============== base 基礎共通 ===============
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans TC","Poppins", sans-serif;
+    // outline: 1px solid;
+  }
+  
+  html,body{
+    width: 100%;
+  }
+  
+  img{
+    max-width: 100%;
+    vertical-align: top;
+  }
+  
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  .en{
+    font-family: "Poppins";
+  }
+  
+  .container{
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  
