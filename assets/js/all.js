@@ -23,14 +23,17 @@ var shopingCardContent = document.querySelector(".shopingCard__list__content");
 var quantity = document.querySelector(".quantity");
 var total = document.querySelector(".checkout__total");
 var productWrapper = document.querySelector(".menu__content__list__wrapper");
-var sentBtn = document.querySelector(".checkout__send");
+var sendBtn = document.querySelector(".checkout__send");
 var message = document.querySelector(".send__message");
 cartBtn.addEventListener("click", function () {
   shopingCard.classList.add("active");
+  document.body.style.overflow = "hidden";
 });
 closeBtn.addEventListener("click", function () {
   shopingCard.classList.remove("active");
   message.classList.remove("active");
+  document.body.style.overflow = "auto";
+  sendBtn.style.backgroundColor = "#323232";
 });
 var products = [{
   id: 1,
@@ -78,7 +81,7 @@ var products = [{
   image: "flappuccino09.png",
   price: 130
 }];
-var shoppingCardList = [];
+var shoppingList = [];
 
 function showProduct() {
   products.forEach(function (item, index) {
@@ -96,16 +99,16 @@ function showProduct() {
 showProduct();
 
 function addToCart(index) {
-  if (shoppingCardList[index] == null) {
+  if (shoppingList[index] == null) {
     // 舉例：讓購物清單陣列索引值 8 的位置之物件，等同於產品列表陣列的索引值8
     // 因為是索引 8 對 8 ，不是一般用push從頭把物件加入陣列的指定方式
     // 如果去印出購物清單陣列，會出現： [empty × 8, {…}]，顯示長度為 9，因為只加入索引值8也就是第九個，所以前面會有8個空位
     // 先轉 JSON 再轉物件，進行深拷貝之後，斷開連結！才可以將這批「新的物件」塞給購物車清單陣列。
     // 不這樣轉換的話，之後購物車清單有任何異動，都會影響到原始的 products 陣列，計算價格時會出問題。
-    // shoppingCardList[index] = products[index]; //舊的寫法會影響到原始陣列
-    shoppingCardList[index] = JSON.parse(JSON.stringify(products[index]));
-    shoppingCardList[index].quantity = 1;
-    console.log(shoppingCardList[index]);
+    // shoppingList[index] = products[index]; //舊的寫法會影響到原始陣列
+    shoppingList[index] = JSON.parse(JSON.stringify(products[index]));
+    shoppingList[index].quantity = 1;
+    console.log(shoppingList[index]);
     console.log(JSON.stringify(products[index]));
     console.log(JSON.parse(JSON.stringify(products[index])));
   }
@@ -119,7 +122,7 @@ function reloadShoppingCard() {
   shopingCardContent.innerHTML = "";
   var count = 0;
   var totalPrice = 0;
-  shoppingCardList.forEach(function (item, index) {
+  shoppingList.forEach(function (item, index) {
     totalPrice = totalPrice + item.price;
     count = count + item.quantity;
 
@@ -132,8 +135,8 @@ function reloadShoppingCard() {
   total.textContent = totalPrice.toLocaleString(); //購物車icon上面的數量
 
   quantity.textContent = count;
-} // 參數 quantityChanged 在按下去購物車清單內的加減符號時，後來才把這個計算後的值帶進來函式內
-// 用這個最新的數量值，賦予給購物車清單陣列內的物件的 quantity 屬性。
+} // 參數 quantityChanged 在按下去購物車清單內的加減符號時，就會進行加減，並這個計算後的值帶進來函式內
+// 把這個最新的數量，賦值給「購物車清單」這個陣列內的，物件的 quantity 屬性。
 // 如果數量值被改變到等於0，就直接把這個對應索引值的物件，從購物清單陣列中刪除
 // 購物清單陣列中的物件「價錢」，用最新得到的數量值乘以原始產品清單的「單價」
 // 一有更動，就用最新的 購物車清單陣列的內容，重新渲染出來購物車清單畫面
@@ -141,20 +144,40 @@ function reloadShoppingCard() {
 
 function changeQuantity(index, quantityChanged) {
   if (quantityChanged == 0) {
-    shoppingCardList.splice(index, 1);
+    shoppingList.splice(index, 1);
   } else {
-    shoppingCardList[index].quantity = quantityChanged;
-    console.log(quantityChanged);
-    shoppingCardList[index].price = quantityChanged * products[index].price;
+    shoppingList[index].quantity = quantityChanged;
+    shoppingList[index].price = quantityChanged * products[index].price;
   }
 
   reloadShoppingCard();
-} //按下送出訂單就清空購物車陣列，並重新渲染購物車畫面
+} // 按下送出訂單就清空購物車陣列，並重新渲染購物車畫面
 
 
-sentBtn.addEventListener("click", function () {
-  shoppingCardList = [];
+sendBtn.addEventListener("click", function () {
+  shoppingList = [];
   reloadShoppingCard();
   message.classList.add("active");
-});
+  sendBtn.style.backgroundColor = "#007542";
+  console.log("有按到click");
+  localStorage.clear();
+}); // function saveData(){
+//   localStorage.setItem("data", JSON.stringify(shoppingList));
+// }
+// // 把存在瀏覽器內的資料，全部渲染到購物車內裡面
+// function showTask(){
+//   shoppingList = JSON.parse(localStorage.getItem("data"));
+//   if(shoppingList !== null){
+//     reloadShoppingCard();
+//   }
+// }
+// showTask();
+// function saveQ(){
+//   localStorage.setItem("quantity", quantity.textContent);
+// }
+// // 把存在瀏覽器內的資料，全部渲染到購物車內裡面
+// function showQ(){
+//   quantity.textContent =  localStorage.getItem("quantity");
+// }
+// showQ();
 //# sourceMappingURL=all.js.map
