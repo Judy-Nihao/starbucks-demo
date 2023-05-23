@@ -390,7 +390,13 @@ nav {
     border: none;
     border-radius: 20px;
     background-color: #f0ece4;
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-transition: all .15s ease-out;
+    -o-transition: all .15s ease-out;
+    transition: all .15s ease-out; }
+    .menu__content__list__card .addToCart:hover {
+      background-color: #007542;
+      color: white; }
     .menu__content__list__card .addToCart i {
       position: relative;
       top: 2px;
