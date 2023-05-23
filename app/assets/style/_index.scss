@@ -1,7 +1,7 @@
 // =============== 首頁 index 內容 ===============
 
 .landing{
-    padding-top: 100px;
+    padding-top: $header-height;
   }
   
   .landing .container{
@@ -75,7 +75,7 @@
       border-radius: 30px;
       letter-spacing: 1px;
       border: 1px solid $color-green;
-      transition: all .3s ease-out;
+      transition: all .15s ease-out;
       &:hover{
         color: white;
         background-color: $color-green;

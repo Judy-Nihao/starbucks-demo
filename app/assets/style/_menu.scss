@@ -1,0 +1,240 @@
+
+*{
+    // outline: 1px solid tomato;
+}
+
+
+.menu{
+    padding-top: $header-height;
+}
+
+.menu__content__list{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+
+    &__wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14%;
+        width: 60%;
+
+        @include pad{
+            width: 80%;
+            gap: 10%;
+        }
+
+    }
+}
+
+
+.menu__content__list__card{
+    width: 24%;
+    margin-bottom: 80px;
+    text-align: center;
+    @include pad{
+        width:45%;
+    }
+
+    h2{
+        margin-top: 20px;
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .card__img{
+        position: relative;
+        height: 200px;
+
+        img{
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    // .card__img::after{
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     transform: translateX(-25px);
+    //     width: 200px;
+    //     height: 200px;
+    //     background-color: #f0ece4;
+    //     clip-path: circle(45% at 50% 50%);
+    //     z-index: -1;
+    // }
+
+    .price{
+        margin-top: 10px;
+        font-family: "Poppins";
+    }
+
+    .addToCart{
+        margin-top: 10px;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 20px;
+        background-color: #f0ece4;
+        cursor: pointer;
+
+        i{
+            position: relative;
+            top: 2px;
+            font-size: 16px;
+            margin-right: 2px;
+        }
+    }
+}   
+
+// ============= 購物車 ============= 
+.shopingCard{
+    position: fixed;
+    top: 0;
+    right: -400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 100vh;
+    z-index: 2;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    background-color: #F7F7F7;
+    transition: all 0.5s;
+}
+
+.shopingCard__list{
+    margin-top: 41px; //讓購物車標題文字底線和nav底線等高
+    padding: 30px;
+}
+
+//隱藏購物清單
+.shopingCard.active{
+    right: 0px;
+}
+
+
+.shopingCard__list__head{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+
+    h1{
+        font-size: 26px;
+        flex:2;
+        font-weight: 400;
+        letter-spacing: 2px;
+    }
+
+    .close{
+        background-color: transparent;
+        border: none;
+        font-size: 40px;
+        cursor: pointer;
+        transition: all 0.15s ease-out;
+
+        &:hover{
+            transform: scale(0.9);
+            color: $color-green;
+        }
+    }
+}
+
+
+.shopingCard__list__content{
+    margin-top: 20px;
+}
+
+
+.checkout{
+    display: flex;
+    justify-content: space-between;
+
+    &__total{
+        flex: 1; //各佔一半
+        background-color: gainsboro;
+        padding: 20px 0;
+        text-align: center;
+        font-family: "Poppins";
+        font-size: 18px;
+        
+    }
+
+    &__send{
+        flex: 1;
+        border: none;
+        background-color: $color-green;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+    }
+}
+
+//購物車產品清單
+
+.shopingCard__list__item{
+    display: flex;
+    justify-content: space-between;  
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid grey;
+    color: #2a2a2a;
+}
+
+.shopping__img{
+    width: 14%;
+    margin-right: 20px;
+}
+
+.shopping__name{
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.shopping__price{
+    font-size: 16px;
+    line-height: 2;
+    font-family: "Poppins";
+}
+
+.shopping__quantity{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+    border-radius: 10px;
+    width: 25%;
+    margin-top: 5px;
+    
+
+    button{
+        border: none;
+        padding: 3px 6px;
+        border-radius: 15px ;
+        font-weight: 800;
+        border: 1px solid grey;
+        cursor: pointer;
+    }
+}
+
+.send__message{
+    position: relative;
+    top: 10%;
+    opacity: 0;
+    background-color: $color-green;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    letter-spacing: 2px;
+    transition: all 0.5s ease;
+}
+
+.send__message.active{
+    top: 0;
+    opacity: 1;
+}
+

@@ -6,10 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%- title %></title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="./assets/style/all.css">
 </head>
 
 <body>
+   <!-- 購物車清單卡-->
+  <div class="shopingCard">
+    <div class="shopingCard__list">
+        <div class="shopingCard__list__head">
+            <h1>購物清單</h1>
+            <button class="close"><i class='bx bx-x'></i></button>
+        </div>
+        <ul class="shopingCard__list__content">
+            <!-- <li class="shopingCard__list__item">
+                <div class="shopping__img"><img src="assets/images/flappuccino01.png" alt=""></div>
+                <div>
+                  <p class="shopping__name">桃子晶凍星冰樂</p>
+                  <p class="shopping__price">NT$<span>150</span></p>
+                </div>
+                <div class="shopping__quantity">
+                    <button class="plus"  onclick="changeQuantity()"><i class='bx bx-plus'></i></button>
+                    <div class="count">1</div>
+                    <button class="minus" onclick="changeQuantity()"><i class='bx bx-minus' ></i></button>
+                </div>
+            </li> -->
+        </ul>
+        <p class="send__message">訂單已送出！</p>
+     </div>
+    <div class="checkout">
+        <div class="checkout__total">0</div>
+        <button class="checkout__send">送出訂單</button>
+    </div>
+</div>
+ <!-- header 表頭 -->
   <header id="header">
     <div class="container">
       <nav>
@@ -18,7 +48,7 @@
           <li class="nav__list__item"><a href="index.html">首頁</a></li>
           <li class="nav__list__item"><a href="menu.html">新品菜單</a></li>
           <li class="nav__list__item"><a href="index.html">聯絡我們</a></li>
-          <li class="nav__list__item cart"><a href="#"></a><div class="number">1</div></li>
+          <li class="nav__list__item cart"><button><i class='bx bx-cart-add' ></i></button><span class="quantity">0</span></li>
         </ul>
       </nav>
     </div>
@@ -26,13 +56,15 @@
 
   <%- contents %>
 
+
+ <!-- header 表尾-->
   <footer id="footer">
     <div class="footer__top">
       <div class="container">
         <ul class="footer__social">
-          <li class="footer__social__icon__fb"><a href="#footer"></a></li>
-          <li class="footer__social__icon__ig"><a href="#footer"></a></li>
-          <li class="footer__social__icon__yt"><a href="#footer"></a></li>
+          <li class="footer__social__icon fb"><a href="#footer"><i class='bx bxl-facebook-circle' ></i></a></li>
+          <li class="footer__social__icon ig"><a href="#footer"><i class='bx bxl-instagram-alt' ></i></a></li>
+          <li class="footer__social__icon yt"><a href="#footer"><i class='bx bxl-youtube'></i></a></li>
         </ul>
       </div>
     </div>
