@@ -5,25 +5,138 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>首頁</title>
+  <title>星巴克飲料網站Demo</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="./assets/style/all.css">
 </head>
 
 <body>
-  <header class="header">
-    這是 header
+   <!-- 購物車清單卡-->
+  <div class="shopingCard">
+    <div class="shopingCard__list">
+        <div class="shopingCard__list__head">
+            <h1>購物清單</h1>
+            <button class="close"><i class='bx bx-x'></i></button>
+        </div>
+        <ul class="shopingCard__list__content">
+            <!-- <li class="shopingCard__list__item">
+                <div class="shopping__img"><img src="assets/images/flappuccino01.png" alt=""></div>
+                <div>
+                  <p class="shopping__name">桃子晶凍星冰樂</p>
+                  <p class="shopping__price">NT$<span>150</span></p>
+                </div>
+                <div class="shopping__quantity">
+                    <button class="plus"  onclick="changeQuantity()"><i class='bx bx-plus'></i></button>
+                    <div class="count">1</div>
+                    <button class="minus" onclick="changeQuantity()"><i class='bx bx-minus' ></i></button>
+                </div>
+            </li> -->
+        </ul>
+        <p class="send__message">訂單已送出！</p>
+     </div>
+    <div class="checkout">
+        <div class="checkout__total">0</div>
+        <button class="checkout__send">送出訂單</button>
+    </div>
+</div>
+ <!-- header 表頭 -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo"><img src="assets/images/starbucks-logo.png" alt=""></a>
+        <ul class="nav__list">
+          <li class="nav__list__item"><a href="index.html">首頁</a></li>
+          <li class="nav__list__item"><a href="menu.html">新品菜單</a></li>
+          <li class="nav__list__item"><a href="index.html">聯絡我們</a></li>
+          <li class="nav__list__item cart"><button><i class='bx bx-cart-add' ></i></button><span class="quantity">0</span></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   
-<h1>
-  這是一段話
-</h1>
+<section class="landing" id="landing">
+    <div class="container">
+        <div class="landing__content">
+            <div class="circle"></div>
+            <div class="landing__content__up">
+                <div class="landing__text">
+                    <p class="en">More than just great coffee.</p>
+                    <h1 class="en">It's <span class="en">Starbucks</span></h1>
+                    <p class="en">Hooray for our newest cooler-than-cool Frappuccino® blended beverage!</p>
+                    <h2 class="ch">經典美味 - 星冰樂夏日創新登場</h2>
+                    <a href="menu.html">瞭解更多</a>
+                </div>
+                <div class="landing__product__big">
+                    <img src="assets/images/flappuccino01.png" alt="">
+                    <p>桃子晶凍星冰樂</p>
+                </div>
+            </div>
+            <div class="landing__content__bottom">
+                    <ul class="thumb">
+                        <li class="thumb__item" data-name="桃子晶凍星冰樂" data-color="#EE9CAD"><img src="assets/images/flappuccino01.png" alt=""></li>
+                        <li class="thumb__item" data-name="抹茶可可星冰樂" data-color="#AAC046"><img src="assets/images/flappuccino02.png" alt=""></li>
+                        <li class="thumb__item" data-name="芒果乳酪星冰樂" data-color="#ffe23b"><img src="assets/images/flappuccino03.png" alt=""></li>
+                    </ul>
+                    <a href="menu.html" class="go-shop"><div class="arrow"></div><span>Get more</span></a>
+            </div>
+    </div>
+</section>
 
-<div class="box"></div>
 
-  <footer class="footer">
-    footer
+ <!-- header 表尾-->
+  <footer id="footer">
+    <div class="footer__top">
+      <div class="container">
+        <ul class="footer__social">
+          <li class="footer__social__icon fb"><a href="#footer"><i class='bx bxl-facebook-circle' ></i></a></li>
+          <li class="footer__social__icon ig"><a href="#footer"><i class='bx bxl-instagram-alt' ></i></a></li>
+          <li class="footer__social__icon yt"><a href="#footer"><i class='bx bxl-youtube'></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+          <ul class="footer__info">
+            <li class="footer__info__col">
+              <h3>認識我們</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">關於星巴克</a></li>
+                <li><a href="#footer">企業責任</a></li>
+                <li><a href="#footer">企業公告</a></li>
+                <li><a href="#footer">星聞室</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>夥伴招募</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">夥伴招募</a></li>
+                <li><a href="#footer">成為我們的夥伴</a></li>
+                <li><a href="#footer">我們的福利</a></li>
+                <li><a href="#footer">發展晉升與專業學習</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>社群平台</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">Facebook</a></li>
+                <li><a href="#footer">Instagram</a></li>
+                <li><a href="#footer">YouTube</a></li>
+                <li><a href="#footer">LINE</a></li>
+              </ul>
+            </li>
+            <li class="footer__info__col">
+              <h3>顧客關懷</h3>
+              <ul class="footer__info__item">
+                <li><a href="#footer">常見問題</a></li>
+                <li><a href="#footer">我在星巴克的小故事</a></li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+    </div>
   </footer>
+ 
   <script src="./assets/js/vendors.js"></script>
   <script src="./assets/js/all.js"></script>
 </body>
