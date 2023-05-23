@@ -10,12 +10,20 @@ header{
     // box-shadow: 0 0 10px 2px rgba($color: grey, $alpha: 0.2); 
     background-color: white;
     
+    .container{
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
   }
   
   nav{
     display: flex;
     justify-content: space-between;
     align-items: center;  
+    img{
+      width: 50px;
+    }
   }
   
   .logo{

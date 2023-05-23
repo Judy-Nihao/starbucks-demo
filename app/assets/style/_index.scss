@@ -1,13 +1,7 @@
 // =============== 首頁 index 內容 ===============
 
-.landing{
-    padding-top: $header-height;
-  }
-  
   .landing .container{
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
+    padding:0;
   } 
   
   .landing__content{
@@ -44,11 +38,12 @@
     max-width: 800px;
   
     p.en{
-      font-size: 30px;
+      font-size: 24px;
+      max-width: 40ch;
     }
   
     h1{
-      font-size: 70px;
+      font-size: 60px;
       margin-bottom: 10px;
       span{
         color: $color-green;
@@ -91,21 +86,29 @@
   }
   
   .landing__product__big{
-    width: 600px;
+    max-width: 600px; //寬度不寫死，手機版時才不會溢出去
     height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    left: -80px;
+    @include pad{
+      left: 0;
+    }
     
   
     img{
       max-width: 350px;
       animation: float 1.5s infinite ease-in-out;
+
+      @include pad{
+        max-width: 280px;
+      }
     }
   
     p{
       position: relative;
-      left: -30px;
       font-size: 45px;
       font-weight: 900;
       color: white;
@@ -113,7 +116,9 @@
       letter-spacing: 3px;
       transform: rotateX(30deg) rotate(-8deg);
       -webkit-text-stroke: 1px black ;
-      //The text-stroke-color property is only used with a -webkit- vendor prefix.
+      @include pad{
+        top: 30px;
+      }
     }
   }
   
@@ -123,7 +128,7 @@
     padding-bottom: 30px;
     flex-wrap: wrap;
     @include pad{
-      margin-top: 100px;
+      margin-top: 25px;
       justify-content: center;
     }
   }

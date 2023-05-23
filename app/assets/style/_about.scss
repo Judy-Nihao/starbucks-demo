@@ -1,0 +1,24 @@
+// =============== about 內容 ===============
+
+.about{
+    color: #333;
+
+    h1{
+        font-weight: 500;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    img{
+        width: 100%;
+    }
+
+    p{
+        line-height: 2;
+        margin-top: 15px;
+    }
+    
+    a:hover{
+        color: $color-green;
+    }
+}
