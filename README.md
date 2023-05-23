@@ -1,7 +1,7 @@
 # 星巴克飲料網站 Demo
 
 
-## 實作網址
+實作網址 : https://judy-nihao.github.io/starbucks-demo/
 
 
 --
