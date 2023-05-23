@@ -77,6 +77,12 @@
         border-radius: 20px;
         background-color: #f0ece4;
         cursor: pointer;
+        transition: all .15s ease-out;
+
+        &:hover{
+            background-color: $color-green;
+            color: white;
+        }
 
         i{
             position: relative;
