@@ -100,7 +100,7 @@ var shoppingList = [];
 
 function showProduct() {
   products.forEach(function (item, index) {
-    var str = "\n      <div class=\"menu__content__list__card\">\n          <div class=\"card__img\"><img src=\"assets/images/".concat(item.image, "\" alt=\"\u661F\u51B0\u6A02\u7167\u7247\"></div>\n          <h2>").concat(item.name, "</h2>\n          <p class=\"price\">NT$<span>").concat(item.price, "</span></p>\n          <button class=\"addToCart\" onclick=\"addToCart(").concat(index, ")\"><i class='bx bx-plus-circle'></i>\u52A0\u5165\u8CFC\u7269\u8ECA</button>\n      </div>\n      ");
+    var str = "\n      <div class=\"menu__content__list__card\">\n          <div class=\"card__img\"><img src=\"assets/images/".concat(item.image, "\" alt=\"\u661F\u51B0\u6A02\u7167\u7247\"></div>\n          <h2>").concat(item.name, "</h2>\n          <p class=\"price\">NT$<span>").concat(item.price, "</span></p>\n          <button class=\"addToCart\" ontouchstart onclick=\"addToCart(").concat(index, ")\"><i class='bx bx-plus-circle'></i>\u52A0\u5165\u8CFC\u7269\u8ECA</button>\n      </div>\n      ");
 
     if (productWrapper) {
       productWrapper.innerHTML += str;
