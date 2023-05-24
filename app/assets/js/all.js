@@ -268,6 +268,7 @@ function changeQuantity(index, quantityChanged){
 sendBtn.addEventListener("click", function(){
     if(shopingCardContent.innerHTML == ""){
       reminder.classList.add("active");
+      message.classList.remove("active");
       console.log("尚未加入商品");
     }else{
       message.classList.add("active");

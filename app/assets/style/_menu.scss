@@ -112,6 +112,7 @@
 
 
 .shopingCard__list__head{
+    position: relative;
     display: flex;
     align-items: center;
     border-bottom: 1px solid grey;
@@ -253,7 +254,7 @@
 }
 
 .send__message.active{
-    top: -50px;
+    top: 80px;
     visibility: visible;
     opacity: 1;
 }
