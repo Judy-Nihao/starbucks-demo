@@ -508,7 +508,7 @@ footer {
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s; }
-  @media (max-width: 410px) {
+  @media (max-width: 576px) {
     .shopingCard {
       right: -100%;
       width: 100%; } }
