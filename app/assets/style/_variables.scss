@@ -2,13 +2,13 @@ $header-height: 80px;
 $color-green: #007542;
 
 @mixin pad{
-  @media(max-width:768px){
+  @media(max-width:915px){
     @content;
   }
 }
 
 @mixin mobile{
-  @media(max-width:375px){
+  @media(max-width:410px){
     @content;
   }
 }

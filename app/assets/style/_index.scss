@@ -85,6 +85,7 @@
     100% { transform: translateY(0px);}
   }
   
+  
   .landing__product__big{
     max-width: 600px; //寬度不寫死，手機版時才不會溢出去
     height: 500px;
@@ -114,7 +115,9 @@
       color: white;
       font-style: italic;
       letter-spacing: 3px;
-      transform: rotateX(30deg) rotate(-8deg);
+      transform: rotate(-8deg);
+      // rotateX(30deg) 是一種立體旋轉，在 ipad 用 Google瀏覽器查看時，X旋轉特效文字會穿出購物清單的圖層
+      // MDN 解釋：rotateX(a) 相當於 rotate3d(1, 0, 0, a).
       -webkit-text-stroke: 1px black ;
       @include pad{
         top: 30px;

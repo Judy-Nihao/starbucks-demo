@@ -5,7 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Noto Sans TC","Poppins", sans-serif;
-    // outline: 1px solid;
+    // outline: 1px solid red;
   }
   
   html,body{
@@ -26,6 +26,11 @@
   
   li {
     list-style: none;
+  }
+
+
+  i{
+    color: black; // 確保 icon 跨瀏覽器顯示都是黑色，否則 ipad 瀏覽器查看會變成預設藍色
   }
   
   .en{

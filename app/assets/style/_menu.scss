@@ -12,10 +12,9 @@
         width: 60%;
 
         @include pad{
-            width: 100%;
+            width: 90%;
             gap: 10%;
         }
-
     }
 }
 
@@ -54,6 +53,7 @@
         padding: 10px 14px;
         border: none;
         border-radius: 20px;
+        color: black;
         background-color: #f0ece4;
         cursor: pointer;
         transition: all .15s ease-out;
@@ -86,8 +86,9 @@
     justify-content: space-between;
     width: 400px;
     height: 100%; //如果設 min-height 會讓購物清單不能往下滾動
+    z-index: 999;
 
-    @include pad{
+    @include mobile{
         right: -100%;
         width: 100%;
     }
@@ -100,8 +101,8 @@
 }
 
 .shopingCard__list{
-    margin-top: 41px; //讓購物車標題文字底線和nav底線等高
-    padding: 30px;
+    padding: 20px 30px;
+    //調整上下padding讓購物車標題文字底線和nav底線等高
 }
 
 //隱藏購物清單
@@ -114,7 +115,6 @@
 .shopingCard__list__head{
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
     border-bottom: 1px solid grey;
 
     h1{
@@ -143,6 +143,23 @@
     margin-top: 20px;
 }
 
+.reminder{
+        position: absolute;
+        bottom: 60px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        background-color: tomato;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s;
+}
+
+.reminder.active{
+    bottom: 67.5px;
+    visibility: visible;
+    opacity: 1;
+}
 
 .checkout{
     display: flex;
@@ -166,6 +183,9 @@
         cursor: pointer;
         user-select:none;
         font-size: 16px;
+        &:hover{
+            background-color: $color-green;
+        }
 
     }
 }
@@ -220,8 +240,10 @@
 }
 
 .send__message{
-    position: relative;
-    top: 10%;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    visibility: hidden;
     opacity: 0;
     background-color: $color-green;
     color: white;
@@ -232,7 +254,8 @@
 }
 
 .send__message.active{
-    top: 0;
+    top: -50px;
+    visibility: visible;
     opacity: 1;
 }
 
