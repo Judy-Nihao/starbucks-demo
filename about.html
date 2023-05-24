@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- , minimum-scale=1, maximum-scale=1 -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>關於星巴克</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -15,25 +15,13 @@
   <div class="shopingCard">
     <div class="shopingCard__list">
         <div class="shopingCard__list__head">
+            <p class="send__message">訂單已送出！</p>
             <h1>購物清單</h1>
             <button class="close"><i class='bx bx-x'></i></button>
         </div>
-        <ul class="shopingCard__list__content">
-            <!-- <li class="shopingCard__list__item">
-                <div class="shopping__img"><img src="assets/images/flappuccino01.png" alt=""></div>
-                <div>
-                  <p class="shopping__name">桃子晶凍星冰樂</p>
-                  <p class="shopping__price">NT$<span>150</span></p>
-                </div>
-                <div class="shopping__quantity">
-                    <button class="plus"  onclick="changeQuantity()"><i class='bx bx-plus'></i></button>
-                    <div class="count">1</div>
-                    <button class="minus" onclick="changeQuantity()"><i class='bx bx-minus' ></i></button>
-                </div>
-            </li> -->
-        </ul>
-        <p class="send__message">訂單已送出！</p>
+        <ul class="shopingCard__list__content"></ul>
      </div>
+     <p class="reminder">尚未加入任何商品</p>
     <div class="checkout">
         <div class="checkout__total">0</div>
         <button class="checkout__send">送出訂單</button>
