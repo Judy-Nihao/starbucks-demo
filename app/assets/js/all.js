@@ -130,7 +130,7 @@ function showProduct(){
           <div class="card__img"><img src="assets/images/${item.image}" alt="星冰樂照片"></div>
           <h2>${item.name}</h2>
           <p class="price">NT$<span>${item.price}</span></p>
-          <button class="addToCart" onclick="addToCart(${index})"><i class='bx bx-plus-circle'></i>加入購物車</button>
+          <button class="addToCart" ontouchstart onclick="addToCart(${index})"><i class='bx bx-plus-circle'></i>加入購物車</button>
       </div>
       `;
       if(productWrapper){productWrapper.innerHTML += str;};
