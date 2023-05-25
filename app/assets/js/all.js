@@ -3,11 +3,11 @@ const circle = document.querySelector(".circle")
 const landingProductBigImg = document.querySelector(".landing__product__big img");
 const landingProductBigText = document.querySelector(".landing__product__big p");
 const thumbItems = document.querySelectorAll(".thumb__item");
+const footerCol = document.querySelectorAll(".footer__info__col");
 
+//首頁飲料縮圖點擊切換大圖
 thumbItems.forEach(function(item){
   // item.childNodes[0] 是 thumb__item 裡面的 img 元素
- 
-
   item.addEventListener("click", function(e){
     //縮圖被點擊到，就用縮圖src替換掉大圖src
     //縮圖被點擊到，就用縮圖data-name的值，替換掉 p 的內容
@@ -17,6 +17,41 @@ thumbItems.forEach(function(item){
     circle.style.backgroundColor = e.currentTarget.dataset.color;
   })
 })
+
+
+//footer手機版手風琴折疊
+footerCol.forEach(function(item, index){
+  const footerColHead = item.querySelector(".footer__info__head");
+  footerColHead.addEventListener("click", function(){
+    item.classList.toggle("open");
+    const footerInfoItem = item.querySelector(".footer__info__item");
+
+    if(item.classList.contains("open")){  
+      footerInfoItem.style.height = `${footerInfoItem.scrollHeight}px`;
+      footerInfoItem.style.marginBottom = "20px";
+      item.querySelector("i").classList.replace("bx-chevron-down", "bx-chevron-up");
+    }else{
+      footerInfoItem.style.height = 0;
+      footerInfoItem.style.marginBottom = "0px";
+      item.querySelector("i").classList.replace("bx-chevron-up", "bx-chevron-down");
+    }
+    removeOpen(index); //把目前點擊到的 col 索引值傳入函式中
+  })
+});
+
+//比對所有的 footerCol 的索引值，和目前點擊到的 footerCol 索引值是否相同
+//索引值相同的才打開，不相同的關閉。也就是只打開點擊到的那個 col
+function removeOpen(index1){
+  footerCol.forEach(function(item2, index2){
+    if(index1 !== index2){
+      item2.classList.remove("open");
+      const footerInfoItem2 = item2.querySelector(".footer__info__item");
+      footerInfoItem2.style.height = "0px";
+      footerInfoItem2.style.marginBottom = "0px";
+      item2.querySelector("i").classList.replace("bx-chevron-up", "bx-chevron-down");
+    }
+  })
+}
 
 
 // menu 區塊
@@ -32,7 +67,7 @@ const message = document.querySelector(".send__message");
 const reminder = document.querySelector(".reminder");
 
 
-
+//購物車icon點擊事件
 cartBtn.addEventListener("click", function(){
   shopingCard.classList.add("active");
   //當視窗窄到購物清單會擋住商品，難以點擊商品加入時，就讓商品頁無法滑動，才不會干擾到行動版購物清單的捲動手感。
@@ -42,7 +77,7 @@ cartBtn.addEventListener("click", function(){
   }
 })
 
-
+//購物清單關閉按鈕點擊事件
 closeBtn.addEventListener("click", function(){
   shopingCard.classList.remove("active");
   message.classList.remove("active");
@@ -51,6 +86,7 @@ closeBtn.addEventListener("click", function(){
   document.body.style.overflow="auto";
 })
 
+//產品清單陣列
 const products = [
   {
     id: 1,
@@ -117,11 +153,10 @@ const products = [
   },
 ]
 
-
+//宣告一個空的購物清單陣列
 let shoppingList = [];
 
-
-
+//把產品清單陣列渲染在畫面上
 function showProduct(){
   products.forEach(function(item, index){
       
@@ -149,40 +184,32 @@ function showProduct(){
 
 showProduct();
 
-
-//原本的加入購物車寫法會綁死索引值，使得陣列裡面會出現空的 null 
+// 舊的加入購物車寫法綁死索引值，會使複製過去的陣列內出現 empty，計算陣列長度時會不合理。
+// 例如：讓購物清單陣列索引值 8 的之物件，對應等於，產品清單陣列的索引值8物件
+// 因為是索引 8 對 8 ，跟使用 push 方法從頭把物件加入陣列的方式不同
+// 若去印出購物清單陣列，會發現明明只加入一個物件，但是陣列長度為 9
+// 顯示 [empty × 8, {…}]
+// 因為加入物件被指定放在索引值8的位置，前面因此產生索引值 0~7 的空位
 // function addToCart(index){
 //   if(shoppingList[index] == null){
-//     // shoppingList[index] == null 綁死了索引順序
-//     // 舉例：讓購物清單陣列索引值 8 的位置之物件，等同於產品列表陣列的索引值8
-//     // 因為是索引 8 對 8 ，不是一般用push從頭把物件加入陣列的指定方式
-//     // 如果去印出購物清單陣列，會出現： [empty × 8, {…}]，顯示長度為 9，因為只加入索引值8也就是第九個，所以前面會有8個空位
-    
-//     // 先轉 JSON 再轉物件，進行深拷貝之後，斷開連結！才可以將這批「新的物件」塞給購物車清單陣列。
-//     // 不這樣轉換的話，之後購物車清單有任何異動，都會影響到原始的 products 陣列，計算價格時會出問題。
-//     // shoppingList[index] = products[index]; //舊的寫法會影響到原始陣列
+//     // shoppingList[index] = products[index]; (舊的寫法有問題)
+//     // 要先轉 JSON 再轉物件，進行深拷貝之後，斷開連結！才可以將這批「新的物件」塞給購物車清單陣列。
+//     // 若沒有深拷貝直接賦值過去，之後購物車清單有任何異動，都會影響到原始的 products 陣列，計算價格時會出問題。
     
 //     // let newObj = JSON.parse(JSON.stringify(products[index]));
 //     // shoppingList.push(newObj);
 //     shoppingList[index] = JSON.parse(JSON.stringify(products[index]));
 //     shoppingList[index].quantity = 1;
-    
-  
-//     // console.log(shoppingList[index]);
-//     console.log(shoppingList);
-
 //   }
-
 //   reloadShoppingCard();
-
 // };
 
 
 //加入購物車新寫法
 function addToCart(index){
-    //先深拷貝products陣列對應索引值之物件，再賦予給變數
+    //先深拷貝products陣列對應索引值之物件，再賦予給變數，才不會影響到原始 products 陣列的內容
     let newObj = JSON.parse(JSON.stringify(products[index]));
-    
+
     //檢查被加入之物件的id為何
     console.log(newObj.id);
     let mapResult = shoppingList.map(function(obj){
@@ -199,7 +226,7 @@ function addToCart(index){
     }
 
     console.log(shoppingList);
-
+    
     reloadShoppingCard();
 
 };
@@ -214,6 +241,7 @@ function reloadShoppingCard(){
   let totalPrice = 0;
   
   shoppingList.forEach(function(item, index){
+    //總金額是 0 + 目前購物清單內所有品項的 price 總和
     totalPrice = totalPrice + item.price;
     count = count + item.quantity;
 

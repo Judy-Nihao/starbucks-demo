@@ -12,8 +12,12 @@
         width: 60%;
 
         @include pad{
-            width: 90%;
+            width: 70%;
             gap: 10%;
+        }
+
+        @include mobile{
+            width: 100%;
         }
     }
 }

@@ -4,16 +4,16 @@ footer{
     background-color: #F0F0F0;
   }
   
-  .footer__top{
+.footer__top{
     border-bottom: 3px solid white;
   }
   
-  .footer__social{
+.footer__social{
     display: flex;
     gap: 15px;
   }
 
-  .footer__social__icon a{
+.footer__social__icon a{
     font-size: 40px;
     color: dimgrey;
     transition: all 0.25s ease;
@@ -22,52 +22,76 @@ footer{
       font-size: 42px;
       color: black;
     }
-  }
+}
 
-  .footer__info{
+.footer__info{
     display: flex;
     flex-wrap: wrap;
     background-image: url("../images/wordmark_footer.png");
     background-repeat: no-repeat;
     background-position: right top;
     min-height: 250px;
-  
-    *{
-      color: #444;
-      line-height: 2;
+    color: #444;
+
+    @include pad{
+      background-image: none;
     }
-  }
+}
   
-  .footer__info__col{
+.footer__info__col{
     width: 20%;
     margin-right: 30px;
+    overflow: hidden;
     
     @include pad{
       width: 100%;
       margin-top: 20px;
       margin-right: 0;
+      border-bottom: 1px solid #888;
+    }    
+}
+  
+.footer__info__col:first-child {
+    margin-right: 0;
+}
+  
+.footer__info__col:last-child {
+    margin-right: 0;
+}
+
+//行動版手風琴摺疊
+.footer__info__head{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  
+  h3{
+    font-weight: 500;
+  }
+
+  i{
+    font-size: 30px;
+    visibility: hidden;
+    @include pad{
+      visibility: visible;
     }
-    
   }
-  
-  .footer__info__col:first-child {
-    margin-right: 0;
-  }
-  
-  .footer__info__col:last-child {
-    margin-right: 0;
-  }
-  
-  .footer__info__item{
-    margin-top: 10px;
+}
+
+.footer__info__item{
+    height: 0;
+    margin-bottom: 0px;
+    transition: all 0.2s linear;
 
     //footer項目清單文字
     a{
+      line-height: 2;
+      color: #444;
       transition: all 0.25s;     
       &:hover{
         color: $color-green;  
       }
     }
-  }
+}
   
   
