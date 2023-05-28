@@ -312,14 +312,14 @@ sendBtn.addEventListener("click", function(){
 
 //localStorage 只能放純字串，所以要把購物清單陣列內的物件轉 JSON 格式再儲存
 function saveData(){
-  localStorage.setItem("data", JSON.stringify(shoppingList));
+  localStorage.setItem("list", JSON.stringify(shoppingList));
 }
 
 // 如果 localStorage 內有儲存東西才渲染，如果沒東西就不做事。
 // 把存在localStorage的純字串資料，先轉成物件，賦值給陣列shoppingList，再渲染購物車畫面
 function showTask(){
-    if(localStorage.getItem("data") !== null){
-      shoppingList = JSON.parse(localStorage.getItem("data"));
+    if(localStorage.getItem("list") !== null){
+      shoppingList = JSON.parse(localStorage.getItem("list"));
       console.log(shoppingList);
       reloadShoppingCard();
     }
