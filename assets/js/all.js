@@ -180,13 +180,11 @@ showProduct(); // 舊的加入購物車寫法綁死索引值，會使複製過�
 
 function addToCart(index) {
   //先深拷貝products陣列對應索引值之物件，再賦予給變數，才不會影響到原始 products 陣列的內容
-  var newObj = JSON.parse(JSON.stringify(products[index])); //檢查被加入之物件的id為何
+  var newObj = JSON.parse(JSON.stringify(products[index])); //篩選 id 組出一個id 陣列 
 
-  console.log(newObj.id);
   var mapResult = shoppingList.map(function (obj) {
     return obj.id;
-  });
-  console.log(mapResult.includes(newObj.id)); // includes()方法會回傳true or false
+  }); // includes()方法會回傳true or false
   // 當 mapResult.includes(newObj.id) 回傳 false 時，才加入清單
   // 也就是，如果購物清單陣列內的物件id，不包含此物件id，意指 id 沒有重複，才可以加入購物清單
   // if 括號內添加一個驚嘆號，轉成 true ，去執行加入購物車的動作。 
@@ -211,7 +209,7 @@ function reloadShoppingCard() {
     count = count + item.quantity;
 
     if (item !== null) {
-      var str = "\n      <li class=\"shopingCard__list__item\">\n        <div class=\"shopping__img\"><img src=\"assets/images/".concat(item.image, "\" alt=\"\"></div>\n        <div>\n          <p class=\"shopping__name\">").concat(item.name, "</p>\n          <p class=\"shopping__price\">NT$<span>").concat(item.price, "</span></p>\n        </div>\n        <div class=\"shopping__quantity\">\n            <button class=\"minus\" onclick=\"changeQuantity(").concat(index, ",").concat(item.quantity - 1, ")\"><i class='bx bx-minus' ></i></button>\n            <div class=\"count\">").concat(item.quantity, "</div>\n            <button class=\"plus\"  onclick=\"changeQuantity(").concat(index, ",").concat(item.quantity + 1, ")\"><i class='bx bx-plus'></i></button>\n        </div>\n      </li>\n      ");
+      var str = "\n      <li class=\"shopingCard__list__item\">\n        <div class=\"shopping__img\"><img src=\"assets/images/".concat(item.image, "\" alt=\"\"></div>\n        <div>\n          <p class=\"shopping__name\">").concat(item.name, "</p>\n          <p class=\"shopping__price\">NT$<span>").concat(item.price, "</span></p>\n        </div>\n        <div class=\"shopping__quantity\">\n            <button type=\"button\" class=\"minus\" onclick=\"changeQuantity(").concat(index, ",").concat(item.quantity - 1, ")\"><i class='bx bx-minus' ></i></button>\n            <div class=\"count\">").concat(item.quantity, "</div>\n            <button type=\"button\" class=\"plus\"  onclick=\"changeQuantity(").concat(index, ",").concat(item.quantity + 1, ")\"><i class='bx bx-plus'></i></button>\n        </div>\n        <button type=\"button\" class=\"close__product\" onclick=\"deleteProduct(").concat(index, ")\"><i class='bx bx-x'></i></button>\n      </li>\n      ");
       shopingCardContent.innerHTML += str;
     }
   }); //購物清單底下的總價計算結果
@@ -224,35 +222,41 @@ function reloadShoppingCard() {
   saveQ();
 } // 參數 quantityChanged 在按下去購物車清單內的加減符號時，就會進行加減，並這個計算後的值帶進來函式內
 // 把這個最新的數量，賦值給「購物車清單」這個陣列內的，物件的 quantity 屬性。
-// 如果數量值被改變到等於0，就直接把這個對應索引值的物件，從購物清單陣列中刪除
-// 購物清單陣列中的物件「價錢」，用最新得到的數量值乘以原始產品清單的「單價」
-// 一有更動，就用最新的 購物車清單陣列的內容，重新渲染出來購物車清單畫面
+// 如果數量值被改變到小於貨等於0時，就讓產品最少數量等於1
+// 購物清單陣列，即時價格：最新數量 x 原始產品清單的「單價」
+// 有任何變動，就重新渲染出來購物車清單畫面
+// 修改購物車商品購買數量
 
 
 function changeQuantity(index, quantityChanged) {
-  if (quantityChanged == 0) {
-    shoppingList.splice(index, 1);
+  if (quantityChanged == 0 || quantityChanged < 0) {
+    shoppingList[index].quantity = 1;
   } else {
     shoppingList[index].quantity = quantityChanged;
     shoppingList[index].price = quantityChanged * products[index].price;
   }
 
   reloadShoppingCard();
-} // 按下送出訂單就清空購物清單陣列，並重新渲染購物車畫面
+} // 點擊購物車商品刪除按鈕，就將此產品從購物車陣列中刪除，並重新渲染購物車
 
+
+function deleteProduct(index) {
+  shoppingList.splice(index, 1);
+  reloadShoppingCard();
+}
+
+; // 按下送出訂單就清空購物清單陣列，並重新渲染購物車畫面
 
 sendBtn.addEventListener("click", function () {
   if (shopingCardContent.innerHTML == "") {
     reminder.classList.add("active");
     message.classList.remove("active");
-    console.log("尚未加入商品");
   } else {
     message.classList.add("active");
     shoppingList = [];
     reloadShoppingCard();
     sendBtn.style.backgroundColor = "#007542";
-    console.log("有按到click");
-    localStorage.clear();
+    localStorage.clear(); //清空 localStorage
   }
 }); //localStorage 只能放純字串，所以要把購物清單陣列內的物件轉 JSON 格式再儲存
 
