@@ -18,8 +18,9 @@ https://github.com/Judy-Nihao/starbucks-demo
 - 未加入任何商品就按送出訂單會出現提示文字
 - RWD響應式版面調整：footer 手機版時轉化為手風琴折疊版面
 
-![image](https://hackmd.io/_uploads/BysHko4Ih.jpg)
-![image](https://hackmd.io/_uploads/HJf6XeS82.jpg)
+![image](https://raw.githubusercontent.com/Judy-Nihao/starbucks-demo/1b68fc2cf9fc2b1de97a263c97d81a57a6e11e00/assets/images/note-01.jpeg)
+
+![image](https://github.com/Judy-Nihao/starbucks-demo/blob/gh-pages/assets/images/note-02.jpeg?raw=true)
 
 
 ## 筆記
@@ -103,7 +104,7 @@ if(productWrapper){productWrapper.innerHTML += str}
 
 因為 `productWrapper` 元素只存在於「菜單」分頁之中，如果不加入這個 if 判斷式，切換到其他分頁時會因為找不到元素可以渲染產品清單而報錯。
  
-![image](https://hackmd.io/_uploads/HJsHVoVL2.png)
+![image](https://github.com/Judy-Nihao/starbucks-demo/blob/gh-pages/assets/images/note-03.png?raw=true)
 
 
 
@@ -247,9 +248,9 @@ shoppingList.push(newObj);
 1. 購物車清單陣列
 2. 購物車 icon 上面的數字
 
-![image](https://hackmd.io/_uploads/H18pxANIh.jpg)
+![image](https://github.com/Judy-Nihao/starbucks-demo/blob/gh-pages/assets/images/note-04.jpeg?raw=true)
 
-![image](https://hackmd.io/_uploads/B1KplRVLn.png)
+![image](https://github.com/Judy-Nihao/starbucks-demo/blob/gh-pages/assets/images/note-05.png?raw=true)
 
 保留的意思，其實是保存當下陣列狀態或是當下的選購數字，切換分頁後，再次渲染在購物車畫面上，看起來就像是沒有變一樣。
 
