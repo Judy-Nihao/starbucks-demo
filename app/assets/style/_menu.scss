@@ -40,6 +40,7 @@
     .card__img{
         position: relative;
         height: 200px;
+        z-index: -1;
 
         img{
             height: 100%;
@@ -62,9 +63,11 @@
         cursor: pointer;
         transition: all .15s ease-out;
 
-        &:hover{
-            background-color: $color-green;
-            color: white;
+        @media (any-hover: hover){
+            &:hover{
+                background-color: $color-green;
+                color: white;
+            }
         }
 
         &:active{
@@ -249,17 +252,18 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s linear;
+    transition: transform 0.2s linear;
 
     i{
         color: dimgrey;
     }
     
-    &:hover{
-        transform: scale(0.9);
-
-        i{
-            color: tomato;
+    @media (any-hover: hover){
+        &:hover{
+            transform: scale(0.9);
+            i{
+                color: tomato;
+            }
         }
     }
 }

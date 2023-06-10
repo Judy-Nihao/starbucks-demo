@@ -1,5 +1,20 @@
 
 // =============== header nav 導覽列 ===============
+.cover{
+  position: fixed;
+  top: $header-height;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.cover.active{
+  visibility:visible;
+  opacity: 0.5;
+  // z-index: 0;
+}
 
 header{
     position: fixed;
@@ -17,6 +32,7 @@ header{
 
   }
   
+  //導覽列
   nav{
     display: flex;
     justify-content: space-between;
@@ -30,10 +46,41 @@ header{
     width: 80px;
   }
   
+  //菜單
+
+  .nav__list.active{
+    position: fixed;
+    right: 0;
+  }
+
   .nav__list{
     display: flex;
     align-items: center;
     gap: 20px;
+    @include mobile{
+      position: fixed;
+      top: 0;
+      right: -163px;
+      transition: right 0.2s linear;
+      flex-direction: column;
+      background-color: white;
+      padding: 40px 0px;
+      margin-top: $header-height;
+      height: 100%;
+      border-left: 1px solid $color-green;
+    }
+
+    button{
+      display: none;
+      border: none;
+      background-color: transparent;
+      font-size: 32px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      @include mobile{
+        display: block;
+      }
+    }
   
     a{
       color: black;
@@ -42,15 +89,35 @@ header{
     }
   }
   
+  .nav__list__item{
+    a{
+      display: block;
+      scale: 1;
+      @include mobile{
+        padding: 10px 65px;
+      }
+
+      &:active{
+        scale: 1.15;
+      }
+    }
+  }
+
   .nav__list__item:hover{
     a{
       color: $color-green;
+      transition: color 0.25s ease;
     }
   }
+
   
+  .wrap{
+    display: flex;
+    gap: 20px;
+  }
   
   // 購物車圖案
-  .nav__list__item.cart{
+  .cart{
     position: relative;
   
     button{
@@ -85,4 +152,40 @@ header{
     }
   }
   
+  .hamburger-menu{
+    visibility: hidden;
+    opacity: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.15s linear;
+
+    @include mobile{
+      visibility:visible;
+      opacity: 1;
+    }
+  }
+
+  .hamburger-menu .bx.bx-menu{
+    opacity: 1;
+    transition: all 0.2s linear;
+
+    &:active{
+      scale: 1.25;
+    }
+  }
+
+  .hamburger-menu .bx.bx-x{
+    animation: fadeIn 1s backwards;
+    transition: scale 0.2s linear;
+    &:active{
+      scale: 0.85;
+    }
+  }
+
+  @keyframes fadeIn {
+    from{ opacity: 0.5;}
+    to{ opacity: 1;}
+  }
   

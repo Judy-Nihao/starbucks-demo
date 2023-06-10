@@ -32,16 +32,23 @@
     <div class="container">
       <nav>
         <a href="index.html" class="logo"><img src="assets/images/starbucks-logo.png" alt=""></a>
-        <ul class="nav__list">
-          <li class="nav__list__item"><a href="index.html">首頁</a></li>
-          <li class="nav__list__item"><a href="menu.html">菜單</a></li>
-          <li class="nav__list__item"><a href="about.html">關於</a></li>
-          <li class="nav__list__item cart"><button><i class='bx bx-cart-add' ></i></button><span class="quantity">0</span></li>
-        </ul>
+        <div class="wrap">
+          <ul class="nav__list">
+            <li class="nav__list__item"><a href="index.html">首頁</a></li>
+            <li class="nav__list__item"><a href="menu.html">菜單</a></li>
+            <li class="nav__list__item"><a href="about.html">關於</a></li>
+            <!-- <li class="nav__list__item cart"><button><i class='bx bx-cart-add' ></i></button><span class="quantity">0</span></li> -->
+          </ul>
+          <div class="cart">
+            <button><i class='bx bx-cart-add'></i></button>
+            <span class="quantity">0</span>
+          </div>
+          <button class="hamburger-menu"><i class='bx bx-menu'></i></button>
+        </div>
       </nav>
     </div>
   </header>
-
+  <div class="cover"></div>
   <%- contents %>
 
 
