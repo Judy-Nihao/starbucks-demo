@@ -78,12 +78,12 @@ hamburger.addEventListener("click", function(){
     hamburger.querySelector("i").className = "bx bx-x";
     cover.classList.add("active")
     document.body.style.overflow="hidden";
-    landingContent.style.zIndex = "-1";
+    landingContent ? landingContent.style.zIndex = "-1" : console.log("show menu"); 
   }else{
     hamburger.querySelector("i").className = "bx bx-menu";
     cover.classList.remove("active")
     document.body.style.overflow="auto";
-    landingContent.style.zIndex = "0";
+    landingContent ? landingContent.style.zIndex = "0" : console.log("hide menu");
   }
 })
 
@@ -91,7 +91,7 @@ hamburger.addEventListener("click", function(){
 cartBtn.addEventListener("click", function(){
   shopingCard.classList.add("active");
   cover.classList.add("active")
-  landingContent.style.zIndex = "-1";
+  landingContent ? landingContent.style.zIndex = "-1" : console.log("show menu"); 
   //當視窗窄到購物清單會擋住商品，難以點擊商品加入時，就讓商品頁無法滑動，才不會干擾到行動版購物清單的捲動手感。
   //但如果瀏覽器視窗寬度夠寬，購物清單開啟也不會遮住產品時，依然可捲動商品頁面，點擊加入購物車。
   if(window.innerWidth < 1680){
@@ -103,11 +103,13 @@ cartBtn.addEventListener("click", function(){
 closeBtn.addEventListener("click", function(){
   shopingCard.classList.remove("active");
   cover.classList.remove("active");
-  landingContent.style.zIndex = "0";
+  landingContent ? landingContent.style.zIndex = "0" : console.log("hide menu");
   message.classList.remove("active");
   reminder.classList.remove("active");
   sendBtn.style.backgroundColor = "#323232";
   document.body.style.overflow="auto";
+  navList.classList.remove("active");
+  hamburger.querySelector("i").className = "bx bx-menu";
 })
 
 //產品清單陣列
