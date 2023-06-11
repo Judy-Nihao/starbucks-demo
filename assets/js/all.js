@@ -16,7 +16,107 @@ thumbItems.forEach(function (item) {
     landingProductBigText.textContent = e.currentTarget.dataset.name;
     circle.style.backgroundColor = e.currentTarget.dataset.color;
   });
-}); //footer手機版手風琴折疊
+}); // 卡片輪播 carousel
+
+var carouselWrapper = document.querySelector(".carousel__wrapper"); // 如果卡片輪播元素存在於 DOM 上才執行相關步驟，否則切換分頁後會因為找不到元素報錯
+
+if (carouselWrapper) {
+  // isDragging 預設是 false ，draggingStart 函式可以改變它的狀態，而 draggingStart 的執行則是透過監聽 mousedown 事件觸發
+  // mousedown 事件是監聽滑鼠按下時
+  // 也就是說必須要滑鼠在 carousel 範圍內有點擊下去的動作，整個 carousel 才會開始可以滑動。否則若滑鼠指示移進去範圍內，並不會觸發滑動。
+  var draggingStart = function draggingStart(e) {
+    isDragging = true;
+    carousel.classList.add("dragging"); // 紀錄初始值
+    // 滑鼠點擊下去的 e.pageX 初始值
+    // 滑鼠點擊下去時 carousel 左邊位移的初始值，會是 0 ，因為還沒開始 drag 。
+
+    startX = e.pageX;
+    startScrollLeft = carousel.scrollLeft; //console.log("這是 e.pageX: " + startX);
+    //console.log("這是 carousel.scrollLeft: " + startScrollLeft); //初始是 0 
+  };
+
+  // 如果 isDragging 是 false 就什麼也不做
+  // pageX 是從該點到「整個網頁頁面 page」最左邊的距離
+  var dragging = function dragging(e) {
+    if (!isDragging) return; // 滑鼠 drag 位移後，會偏移一開始點擊下去的位置
+    // e.pageX 是當下滑鼠位置，startX 是當初點擊下去的位置
+    // 如果 drag 是往左拉動，則 e.pageX < startX ，相減就是負值。
+    // 例如：相減後為 -15，startScrollLeft -(-15) = 0 +15 = 15; 整個 carousel 就只往右移動 15px。
+    // 如果 scrollLeft 值小於 0，那麼 scrollLeft值將變為 0。
+    // 如果 scrollLeft 值大到元素內容最大程度，那麼 scrollLeft 設置的值將被設置為元素最大程度。
+
+    carousel.scrollLeft = startScrollLeft - (e.pageX - startX); //console.log("滑鼠當下位置 - 滑鼠點擊初始值 = " + (e.pageX - startX)); 
+    //console.log("最新的 scrollLeft = " + (carousel.scrollLeft));
+  };
+
+  // mouseup 事件是滑鼠按鍵放開時觸發
+  var draggingStop = function draggingStop(e) {
+    isDragging = false;
+    carousel.classList.remove("dragging");
+  };
+
+  // 滑到最左或是最右就隱藏按鈕
+  // carousel.scrollLeft 可能會是浮點數，要先處理成最接近的大於等於整數，再比較
+  // carousel.scrollWidth 會連裡面的子元素寬度都包含，所以 overflow 的卡片寬度都算進來。
+  // carousel.offsetWidth 則是只計算元素本身寬度，所以只計算 carousel 容器看得見的部分，溢出去的子層寬度不會算進來。
+  var hideBtn = function hideBtn() {
+    if (carousel.scrollLeft === 0) {
+      console.log("已經滑到最左邊");
+      arrowBtns[0].style.display = "none";
+    } else if (Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+      console.log("已經滑到最右邊");
+      arrowBtns[1].style.display = "none";
+    } else {
+      //除此之外，只要不是最左或是最右ㄝ就兩邊都顯示按鈕。
+      showArrowLeft();
+      showArrowRight();
+    }
+  };
+
+  // 顯示左按鈕
+  var showArrowLeft = function showArrowLeft() {
+    arrowBtns[0].style.display = "block";
+  };
+
+  // 顯示右按鈕
+  var showArrowRight = function showArrowRight() {
+    arrowBtns[1].style.display = "block";
+  };
+
+  var carousel = document.querySelector(".carousel");
+  var arrowBtns = document.querySelectorAll(".carousel__wrapper button");
+  var firstCardWidth = document.querySelector(".carousel__card").offsetWidth; // 左右按鈕點擊滑動卡片
+
+  arrowBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // 如果點擊到的是左箭頭，整個 carousel 位移第一張卡片寬度的「負值」以及 gap 寬度，若點擊到的不是左箭頭，代表是右箭頭，就加上第一張卡片寬度和 gap 寬度
+      // 用 += 處理，若一直點箭頭就一直累計位移值
+      carousel.scrollLeft += btn.id === "left" ? -firstCardWidth - 16 : firstCardWidth + 16;
+    });
+  }); // 滑鼠拉動方式去滑動卡片
+
+  var isDragging = false;
+  var startX;
+  var startScrollLeft;
+  ;
+  ;
+  ;
+  ;
+  ;
+  ; // 一旦開始點擊右按鈕，則左按鈕恢復顯示
+
+  arrowBtns[1].addEventListener("click", showArrowLeft); // 一旦開始點擊左按鈕，則右按鈕恢復顯示
+
+  arrowBtns[0].addEventListener("click", showArrowRight);
+  carousel.addEventListener("mousedown", draggingStart);
+  carousel.addEventListener("mousemove", dragging);
+  document.addEventListener("mouseup", draggingStop); // 監聽卡片是否已經滑到最左或是最右
+
+  carousel.addEventListener("scroll", hideBtn); // 點擊按鈕時
+
+  document.addEventListener("mouseup", hideBtn); // 用滑鼠 drag 拖曳時
+} //footer手機版手風琴折疊
+
 
 footerCol.forEach(function (item, index) {
   var footerColHead = item.querySelector(".footer__info__head");
@@ -65,7 +165,8 @@ var reminder = document.querySelector(".reminder");
 var hamburger = document.querySelector(".hamburger-menu");
 var navList = document.querySelector(".nav__list");
 var cover = document.querySelector(".cover");
-var landingContent = document.querySelector(".landing__content");
+var landingContent = document.querySelector(".landing__content"); // 行動版漢堡 menu
+
 hamburger.addEventListener("click", function () {
   navList.classList.toggle("active");
 
@@ -73,7 +174,7 @@ hamburger.addEventListener("click", function () {
     hamburger.querySelector("i").className = "bx bx-x";
     cover.classList.add("active");
     document.body.style.overflow = "hidden";
-    landingContent ? landingContent.style.zIndex = "-1" : console.log("show menu");
+    landingContent ? landingContent.style.zIndex = "-1" : console.log("show menu"); //若 landingContent 存在於 DOM 就修改其 z-index，若不存在就印出 "show menu"
   } else {
     hamburger.querySelector("i").className = "bx bx-menu";
     cover.classList.remove("active");
