@@ -1,6 +1,6 @@
 // =============== 首頁 index 內容 ===============
 
-  .landing .container{
+  .container__landing{
     position: relative;
     padding:0;
   } 
@@ -234,4 +234,113 @@
       left: 8px;
     }
   }
+
+
+// 卡片輪播 carousel
+.carousel__main__title{
+  text-align: center;
+  padding-top: 30px;
+}
+
+.container__carousel{
+  position: relative;
+}
+
+.carousel__wrapper{
+  width: 100%;
+  margin-bottom: 40px;
   
+  button{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 3px 6px rgba(black, 0.2);
+    font-size: 20px;
+  
+    i{
+      // 讓 icon 填滿 button ，滑鼠點擊才輕鬆
+      width: 40px;
+      padding: 10px 0;
+      color: rgb(100, 100, 100);
+    }
+  }
+
+  button.arrow-left{
+    left: 10px;
+  }
+
+  button.arrow-right{
+    right: 10px;
+  }
+
+}
+
+.carousel{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100%/5) - 13px);
+  gap: 16px;
+  // overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; // 讓卡片水平滑動後會吸附在容器邊緣
+  scroll-behavior: smooth; //點擊左右按鈕時滑動需要 smooth
+  scrollbar-width: none; // 必須是 none 不是 0 ，設置 0 會在 firefox 出現滾動條 
+
+  @include pad{
+    grid-auto-columns: calc((100%/2) - 13px);
+  }
+
+  @include mobile{
+    grid-auto-columns: 100%;
+  }
+}
+
+// 消除滾動條
+.carousel::-webkit-scrollbar{
+  display: none;
+}
+
+
+// 滑鼠 dragging 時不需要 smooth behavior，不然 dragging 會有延遲感。
+.carousel.dragging{
+  scroll-behavior: auto;
+  scroll-snap-type: none; // drag 時移除 snap，否則電腦版會卡卡的。手機版滑動不影響。
+}
+
+//圖卡在 dragging 時文字不讓人選取
+.carousel.dragging .carousel__card{
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel__card{
+  scroll-snap-align: start; //配合父層的 scroll-snap-type
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+  overflow: hidden;
+
+  a{
+    display: block;
+  }
+  
+  &__img{
+    position: relative;
+    border-radius: 12px;
+    z-index: -1;
+  }
+
+  p{
+    position: relative;
+    border-top: 1px solid lightgrey;
+    padding: 16px;
+    font-size: 14px;
+    z-index: -1;
+  }
+}
