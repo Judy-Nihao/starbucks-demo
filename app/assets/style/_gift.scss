@@ -1,0 +1,99 @@
+// =============== gift 內容 ===============
+
+.gift{
+    .container{
+        padding-top: 0;
+        padding-bottom: 0;
+        @include pad{
+            padding: 0;
+        }
+    }
+    color: #333;
+
+    p{
+        line-height: 2;
+        margin-top: 15px;
+    }
+    
+    a:hover{
+        color: $color-green;
+    }
+}
+
+.gift__banner{
+    display: block;
+    background-image: url(../images/banner-gift.jpg);
+    height: 400px;
+}
+
+.gift__title{
+    background-color: #ededed;
+
+    h1{
+        font-weight: 500;
+        font-size: 16px;
+        padding: 10px 0;
+
+        @include pad {
+            text-align: center;
+        }
+    }
+}
+
+
+.gift__content{
+    display: flex;
+    align-items: center;
+    @include pad{
+        flex-direction: column-reverse;
+    }
+
+    h2{
+        font-weight: 500;
+        padding-bottom: 10px;
+        border-bottom: 1px solid dimgrey;
+    }
+
+    p{
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    a{  
+        font-weight: 600;
+    }
+
+    &__text{
+        width: 40%;
+        padding-right: 40px;
+        @include pad{
+            padding: 40px 0;
+        }
+    }
+
+    &__img{
+        width: 60%;
+        @include pad{
+            width: 100%;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.gift__content.reverse{
+    flex-direction: row-reverse;
+    @include pad{
+        flex-direction: column-reverse;
+    }
+
+    .gift__content__text{
+        width: 40%;
+        padding-left: 40px;
+        @include pad{
+            padding-left: 0;
+        }
+    }
+}
